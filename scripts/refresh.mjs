@@ -1,6 +1,6 @@
 import { execFileSync } from "node:child_process";
 import { mkdir, writeFile } from "node:fs/promises";
-import { existsSync, writeFileSync, rmSync, statSync } from "node:fs";
+import { existsSync, writeFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { bestFormat, makePlaylist } from "../src/playlist.js";
@@ -31,8 +31,6 @@ if (process.env.YOUTUBE_COOKIES) {
     cookieFile = "C:\\cookies.txt";
   }
 }
-
-console.log("Cookie diagnostics: env length=" + (process.env.YOUTUBE_COOKIES || "").length + ", file size=" + (cookieFile && existsSync(cookieFile) ? statSync(cookieFile).size : 0));
 
 try {
   const results = await Promise.all(channels.map(async ([name, type, source]) => {

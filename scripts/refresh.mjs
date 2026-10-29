@@ -36,7 +36,13 @@ try {
   const results = await Promise.all(channels.map(async ([name, type, source]) => {
     try {
       if (type === "direct") return { name, url: source, height: null };
-      const ytdlpArgs = ["--no-warnings", "--skip-download", "-J"];
+      const ytdlpArgs = [
+        "--no-warnings",
+        "--skip-download",
+        "-J",
+        "--extractor-args",
+        "youtube:player-client=ios,web",
+      ];
       if (cookieFile && existsSync(cookieFile)) {
         ytdlpArgs.push("--cookies", cookieFile);
       }

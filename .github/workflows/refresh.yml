@@ -12,20 +12,12 @@ concurrency:
   cancel-in-progress: true
 jobs:
   refresh-and-publish:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Windows]
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.x"
-      - name: Install yt-dlp
-        run: python -m pip install --upgrade yt-dlp
       - run: npm test
       - name: Refresh playlist
         env:

@@ -1,0 +1,6 @@
+{
+  "name": "kannada-news-iptv-playlist",
+  "private": true,
+  "type": "module",
+  "scripts": { "test": "node --test" }
+}
